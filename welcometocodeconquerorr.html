@@ -1,44 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Welcome to Code Conquerorr</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <title>Code Conqueror</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-        p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
+  <style>
+    :root {
+      --obsidian: #050505;
+      --cobalt: #1f6bff;
+      --toxic: #7CFF00;
+      --glass: rgba(255,255,255,0.08);
+    }
 
-        .card {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-    </style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--obsidian);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* Cyber Grid Background */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      padding: 4rem 1.5rem;
+      display: grid;
+      gap: 3rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        grid-template-columns: 1.2fr 1fr;
+        align-items: center;
+      }
+    }
+
+    /* Glass Card */
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 0 60px rgba(31,107,255,0.15);
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin: 0 0 1rem;
+      line-height: 1.1;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background: var(--toxic);
+      margin-left: 6px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .sub {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 480px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      position: relative;
+      padding: 14px 32px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--cobalt), var(--toxic));
+      color: #000;
+      box-shadow: 0 0 25px rgba(31,107,255,0.6);
+      animation: pulse 3s infinite;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Glitch Hover */
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+      animation: glitch 0.3s steps(2);
+    }
+
+    @keyframes glitch {
+      0% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(31,107,255,0.4); }
+      50% { box-shadow: 0 0 40px rgba(124,255,0,0.8); }
+    }
+
+    /* Greatsword Icon */
+    .sword {
+      display: grid;
+      place-items: center;
+    }
+
+    .blade {
+      width: 8px;
+      height: 280px;
+      background: linear-gradient(to top, var(--toxic), var(--cobalt));
+      box-shadow: 0 0 40px var(--cobalt);
+      border-radius: 4px;
+    }
+
+    .guard {
+      margin-top: -10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--toxic);
+    }
+
+  </style>
 </head>
 <body>
-    <div class="card">
-        <h1>🚀 Welcome to Code Conqueror</h1>
-        <p>Your journey to mastering code starts here.</p>
-        <p>Build. Break. Learn. Conquer.</p>
+
+  <section class="hero glass">
+    <div>
+      <h1>
+        <span id="typed"></span><span class="cursor"></span>
+      </h1>
+
+      <p class="sub">
+        You are not here to learn. You are here to conquer.<br>
+        Wield code as weaponry. Purge bugs. Refactor the realm.
+      </p>
+
+      <div class="actions">
+        <button class="btn btn-primary">INITIALIZE QUEST</button>
+        <button class="btn btn-secondary">VIEW LEADERBOARD</button>
+      </div>
     </div>
+
+    <div class="sword">
+      <div class="blade"></div>
+      <div class="guard">&lt; &gt;</div>
+    </div>
+  </section>
+
+  <script>
+    const text = "ENTER THE RAID";
+    const target = document.getElementById("typed");
+    let i = 0;
+
+    function type() {
+      if (i < text.length) {
+        target.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 80);
+      }
+    }
+
+    type();
+  </script>
+
 </body>
 </html>
+
